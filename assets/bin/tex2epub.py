@@ -193,6 +193,7 @@ def convert(book, path, epub, keep_h1=True, text=None):
     s = text if text is not None else open(ROOT + path, encoding='utf-8').read()
     s = re.sub(r'(?m)^[ \t]*%.*\n', '', s)
     s = strip_conditionals(s)
+    s = re.sub(r'\\bigskip\s*\\begin\{center\}', r'\\begin{center-gap}', s)
     s = book.extract_notes(s, epub)
     olds = old_headings(epub) if epub and os.path.exists(TXT + epub + '.xhtml') else []
     old_by_level = {1: [o for o in olds if o[0] == 1], 2: [o for o in olds if o[0] == 2], 3: [o for o in olds if o[0] == 3]}
@@ -216,6 +217,8 @@ def convert(book, path, epub, keep_h1=True, text=None):
             env = env_stack[-1] if env_stack else None
             if env == 'center':
                 blocks.append('<p style="text-align: center;">%s</p>' % h)
+            elif env == 'center-gap':
+                blocks.append('<p style="text-align: center; margin-top: 1.5em;">%s</p>' % h)
             elif env == 'intro':
                 blocks.append('<p class="intro">%s</p>' % h)
             elif env == 'outro':
