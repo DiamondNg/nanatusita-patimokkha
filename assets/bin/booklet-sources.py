@@ -18,11 +18,44 @@ POST = ["pubba-bhaga", "siluddesa", "tayana-gatha", "ovada-patimokkha"]
 
 def run_on(s):
     """Drop forced page breaks and the chapter opener; sections run on."""
+    s = drop_notes(s)
     s = re.sub(r'\\chapterOpeningPage\{[^}]*\}', '', s)
     s = re.sub(r'\\chapter\{[^}]*\}', '', s)
     s = re.sub(r'\\if(afive|ninebythirteen)version\\clearpage\\fi', '', s)
     s = re.sub(r'\\(clearpage|cleardoublepage|newpage)\b', r'\\par\\medskip', s)
     return s
+
+
+NOTE_START = re.compile(r'\\makeatletter\\hyperlink\{endnote(\d+)-appendix\}\\Hy@raisedlink\{')
+
+
+def drop_notes(s, keep=8):
+    """Remove the whole footnote-marker construct (not just \\pagenote) for notes > keep.
+    Leaving the empty hyperlink/raisedlink boxes behind spoils line filling."""
+    out, i = [], 0
+    while True:
+        m = NOTE_START.search(s, i)
+        if not m:
+            out.append(s[i:])
+            break
+        out.append(s[i:m.start()])
+        j, depth = m.end(), 1
+        while depth:
+            c = s[j]
+            depth += (c == '{') - (c == '}')
+            j += 1
+        if int(m.group(1)) <= keep:
+            out.append(s[m.start():j])
+        if s.startswith('\\makeatother{}', j):
+            if int(m.group(1)) <= keep:
+                out.append('\\makeatother{}')
+            j += len('\\makeatother{}')
+        elif s.startswith('\\makeatother', j):
+            if int(m.group(1)) <= keep:
+                out.append('\\makeatother')
+            j += len('\\makeatother')
+        i = j
+    return ''.join(out)
 
 
 def read(path):

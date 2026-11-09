@@ -4497,6 +4497,7 @@ Na udake agilāno uccāraṁ vā passāvaṁ vā kheḷaṁ vā karissāmī'ti s
 \linkdest{endnote531-body}
 \linkdest{endnote532-body}
 \linkdest{endnote533-body}
+\begin{center}
 Uppann'uppannānaṁ adhikaraṇānaṁ samathāya vūpasamāya:\\
 sammukhāvinayo dātabbo,\\
 sativinayo dātabbo,\\
@@ -4509,6 +4510,7 @@ yebhuyyasikā,\makeatletter\hyperlink{endnote532-appendix}\Hy@raisedlink{\hypert
 tassapāpiyyasikā,\makeatletter\hyperlink{endnote533-appendix}\Hy@raisedlink{\hypertarget{endnote533-body}{}{\pagenote{%
 		\hypertarget{endnote533-appendix}{\hyperlink{endnote533-body}{Dm, Mi \& Mm Se, Um, V, Pg: \textit{-pāpiya-}. BhPm 2, D: \textit{-pāpīyya-}. C, W: \textit{pāpeyyasikā}  (Also in other old ms: Ridivihāra, Sirimalwatta, Sagama RMV, etc.), G: \textit{pāpiyyissikā}.}}}}}\makeatother\\
 tiṇ'avatthārako'ti.
+\end{center}
 
 \medskip
 
@@ -7663,7 +7665,7 @@ This much [of the training-rules] of the Fortunate One has been handed down in t
 
 Bhagavato arahato sammāsambuddhassa \hfill{[3x]}
 
-%% \smallskip
+\bigskip
 
 \begin{center}
 	\anglebracketleft\ \hspace{-0.5mm}Handa mayaṁ sacca-kiriyā-gāthāyo bhaṇāmase \hspace{-0.5mm}\anglebracketright\
